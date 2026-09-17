@@ -1,0 +1,29 @@
+.calculator-melds{display:flex;align-items:center;justify-content:center;gap:9px;flex-wrap:wrap;margin-top:14px;color:#bcd0c1;font-size:13px}
+.calculator-melds>div{position:relative;display:flex;align-items:flex-end;gap:2px;padding:22px 8px 7px;border:1px solid #ffffff24;border-radius:9px;background:#ffffff0a}
+.calculator-melds>div>b{position:absolute;top:3px;left:9px;color:#e7ca83;font-size:12px}
+.calculator-melds>div>button:last-child{position:absolute;top:1px;right:2px;width:24px;height:24px;padding:0;border:0;background:transparent;color:#bfd0c5}
+.calculator-meld-builder{max-width:760px;margin:12px auto 0;padding:14px;border:1px solid #cad8cf;border-radius:12px;background:#f8fbf8}
+.calculator-meld-draft{min-height:76px;display:flex;align-items:center;justify-content:center;gap:5px;color:#718379}
+.calculator-meld-draft .tile{width:48px;height:67px}
+.calculator-meld-actions{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:12px}
+.calculator-meld-actions button{padding:9px 14px}
+.calculator-meld-error{margin:10px 0 0;text-align:center;color:#9b463d;font-size:14px}
+.calculator-advice{margin:14px 0;padding:15px;border:1px solid #c7d8cc;border-radius:12px;background:#eef6ef;color:#2c4d3d}
+.calculator-advice>strong{display:block;color:#174f3a;font-size:16px}
+.calculator-advice>p{margin:7px 0 0;color:#60756a;line-height:1.6}
+.calculator-advice>small{display:block;margin-top:10px;color:#697c72}
+.calculator-waits,.calculator-shape-picks{display:flex;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-top:12px}
+.calculator-waits>span,.calculator-shape-picks>span{position:relative;display:grid;justify-items:center;gap:4px;padding-bottom:22px}
+.calculator-waits .tile,.calculator-shape-picks .tile{width:38px;height:53px}
+.calculator-waits b,.calculator-shape-picks b{font-size:12px;color:#745b2c}
+.calculator-waits small{position:absolute;bottom:0;padding:2px 6px;border-radius:5px;font-size:11px;color:#fff}
+.calculator-waits .has-yaku{background:#25704e}
+.calculator-waits .no-yaku{background:#a04d43}
+.calculator-recommendations{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+.calculator-recommendations article{padding:12px;border:1px solid #d0ddd4;border-radius:10px;background:#fff}
+.calculator-recommendations article>div{display:flex;align-items:center;gap:10px}
+.calculator-recommendations .tile{width:38px;height:53px}
+.calculator-recommendations article>p{font-size:13px;line-height:1.6;color:#63776c}
+@media(max-width:700px){.calculator-melds{justify-content:flex-start}.calculator-meld-builder{padding:10px}.calculator-meld-actions{display:grid;grid-template-columns:1fr 1fr}.calculator-recommendations{grid-template-columns:1fr}.calculator-recommendations article{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:10px}.calculator-recommendations article>p{margin:0}.calculator-waits{gap:8px}}
+.jp-custom{margin-top:26px;padding-top:22px;border-top:1px solid #cfdbd2}.jp-rule-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px 18px}.jp-rule-grid label,.live-analysis-setting{display:flex!important;justify-content:space-between;align-items:center;gap:16px}.rule-presets{display:flex;gap:8px;flex-wrap:wrap}.live-analysis{margin:8px 0;padding:10px 12px;border:1px solid #b99648;border-radius:12px;background:linear-gradient(135deg,#0d4939,#153f34);color:#fff;display:flex;align-items:center;justify-content:space-between;gap:12px}.live-analysis>div:first-child{display:grid;gap:2px}.live-analysis>div:first-child span,.live-analysis>span{font-size:12px;color:#c4d7ce}.live-choices{display:flex;gap:8px;overflow:auto}.live-choice{display:grid;grid-template-columns:auto auto;grid-template-rows:auto auto;align-items:center;gap:0 7px;min-width:max-content}.live-choice .tile{grid-row:1/3;width:32px;height:44px}.live-choice strong{font-size:12px;color:#f2d47f}.live-choice em{font-size:11px;font-style:normal;color:#d4e2db}.live-choice small{grid-column:1/3;max-width:210px;font-size:10px;color:#d4e2db}.game-tools #live-analysis-toggle[aria-pressed="true"]{background:#195c43;color:#fff;border-color:#d9bb70}
+@media(max-width:700px){.jp-rule-grid{grid-template-columns:1fr}.live-analysis{align-items:flex-start;flex-direction:column}.live-choices{width:100%}.live-choice .tile{width:38px;height:53px}}

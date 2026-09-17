@@ -1,0 +1,1 @@
+CREATE UNIQUE INDEX `leaderboards_one_active_per_mode` ON `leaderboards` (`mode`) WHERE "leaderboards"."status" = 'active';

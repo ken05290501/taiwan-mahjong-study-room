@@ -1,0 +1,41 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1789284752224,
+      "tag": "0000_quiet_switch",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1789286127331,
+      "tag": "0001_abandoned_tana_nile",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1789310444990,
+      "tag": "0002_bumpy_wallflower",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1789327284003,
+      "tag": "0003_dark_magma",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1789327307837,
+      "tag": "0004_short_eternals",
+      "breakpoints": true
+    }
+  ]
+}

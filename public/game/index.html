@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,viewport-fit=cover"
+    />
+    <title>台灣麻將館｜台灣與日本麻將練習</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="polish.css?v=52" />
+    <link rel="stylesheet" href="mobile.css" />
+    <link rel="stylesheet" href="account.css" />
+    <link rel="stylesheet" href="account-detail.css" />
+    <link rel="stylesheet" href="action-alert.css" />
+    <link rel="stylesheet" href="history-split.css" />
+    <link rel="stylesheet" href="yaku-hint.css" />
+    <link rel="stylesheet" href="end-flow.css" />
+    <link rel="stylesheet" href="highlight.css" />
+    <link rel="stylesheet" href="hand-calculator.css" />
+    <link rel="stylesheet" href="hand-calculator-melds.css" />
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="#play"
+        ><b>發</b><span>台灣麻將館<small>TAIWAN MAHJONG CLUB</small></span></a
+      >
+      <nav>
+        <a href="#play">單人牌局</a><a href="#wait">聽牌測驗</a
+        ><a href="#discard">捨牌測驗</a><a href="#tips">麻將小技巧</a
+        ><a href="#yaku">台數 / 番數</a><a href="#history">我的戰績</a
+        ><a href="#leaderboard">排行榜</a><a href="#highlights">牌面高光</a>
+      </nav>
+      <button id="member-button" type="button">👤 暱稱登入</button
+      ><button id="settings">⚙ 規則設定</button>
+    </header>
+    <div class="mode-bar">
+      <label
+        >遊戲模式
+        <select id="mode">
+          <option value="tw">台灣麻將 · 十六張</option>
+          <option value="jp">日本麻將 · 十三張</option>
+        </select></label
+      ><span>切換模式後按「開始牌局」</span>
+    </div>
+    <main id="app"></main>
+    <dialog id="rules">
+      <form method="dialog">
+        <div class="eyebrow">YOUR TABLE, YOUR RULES</div>
+        <h2>這一桌，你說了算</h2>
+        <p>
+          設定會在下一局生效，並儲存在此瀏覽器。日麻模式固定使用無花牌、有役限制與標準吃碰規則；底台只適用台灣模式。
+        </p>
+        <label
+          ><span>音效（立即套用）</span
+          ><input name="sound" type="checkbox" /></label
+        ><label class="voice-pack-setting">
+          <span>人聲語音包</span>
+          <select name="voicePack" aria-label="選擇人聲語音包">
+            <option value="auto">跟隨玩法（推薦）</option>
+            <option value="tw_recorded">台灣麻將語音包</option>
+            <option value="tw">裝置中文語音</option>
+            <option value="jp">日本雀士語音</option>
+            <option value="off">關閉人聲</option>
+          </select>
+        </label>
+        <div class="voice-pack-preview">
+          <p id="voice-status" role="status"></p>
+          <button id="voice-preview" type="button">試聽人聲</button>
+        </div>
+        <p>摸牌與出牌固定使用 T-STUDIO 牌聲；吃、碰、槓、立直、胡牌與流局只使用人聲語音。</p>
+        <p>
+          胡牌聲光效果依 0–3、4–7、8–15、16
+          台以上分級，以含莊家、連莊且封頂後的最高付款台數判定；日麻依番數，役滿採最高級。
+        </p>
+        <label
+          >音量
+          <input
+            name="volume"
+            aria-label="音量"
+            type="range"
+            min="0"
+            max="1"
+            step="0.05" /></label
+        ><label
+          ><span>動畫效果</span><input name="motion" type="checkbox" /></label
+        ><label
+          >底
+          <input
+            name="base"
+            type="number"
+            min="0"
+            max="10000"
+            step="10" /></label
+        ><label
+          >每台
+          <input
+            name="unit"
+            type="number"
+            min="0"
+            max="10000"
+            step="10" /></label
+        ><label
+          ><span>使用花牌（自動補花）</span
+          ><input name="flowers" type="checkbox" /></label
+        ><label
+          ><span>允許吃牌</span><input name="chow" type="checkbox" /></label
+        ><label
+          ><span>允許碰、槓</span><input name="pong" type="checkbox" /></label
+        ><label
+          ><span>只可自摸</span><input name="self" type="checkbox" /></label
+        ><label
+          ><span>顯示聽牌提示</span><input name="hint" type="checkbox"
+        /></label>
+        <div id="tw-settings"></div>
+        <button class="primary" value="save">儲存規則</button
+        ><button value="cancel" formnovalidate>取消</button>
+      </form>
+    </dialog>
+    <dialog id="member-dialog">
+      <form id="member-form">
+        <div class="eyebrow">MEMBER LOGIN</div>
+        <h2>用暱稱加入牌桌</h2>
+        <p>暱稱會記在這台裝置，戰績則同步到會員排行榜。</p>
+        <label
+          >會員暱稱<input
+            name="nickname"
+            required
+            minlength="2"
+            maxlength="20"
+            autocomplete="nickname"
+            placeholder="輸入 2–20 個字"
+        /></label>
+        <p class="member-error" role="status"></p>
+        <button class="primary" type="submit">登入</button
+        ><button type="button" onclick="this.closest('dialog').close()">
+          稍後再說
+        </button>
+      </form>
+    </dialog>
+    <footer class="asset-credit">
+      牌面圖像：<a
+        href="https://github.com/samoheen/mahjong-tiles"
+        target="_blank"
+        rel="noopener noreferrer"
+        >Mahjong Tiles</a
+      >
+      · CC0 ｜ 日麻計分：<a
+        href="https://github.com/kobalab/majiang-core"
+        target="_blank"
+        rel="noopener noreferrer"
+        >Majiang</a
+      >
+      · MIT
+      ｜ 音效：<a
+        href="https://t-studio-tst.itch.io/free-sound-mahjong-sound-pack"
+        target="_blank"
+        rel="noopener noreferrer"
+        >みんなの創作支援サイトＴスタ / T-STUDIO</a
+      >
+    </footer>
+    <script src="tile-preload.js"></script>
+    <script src="vendor/majiang.js"></script>
+    <script src="engine.js"></script>
+    <script src="taiwan.js"></script>
+    <script src="match.js"></script>
+    <script src="japanese.js"></script>
+    <script src="yaku.js"></script>
+    <script src="victory.js"></script>
+    <script src="enhance.js"></script>
+    <script src="quiz-bank.js"></script>
+    <script src="discard-challenges.js"></script>
+    <script src="experience.js?v=52"></script>
+    <script src="review.js"></script>
+    <script src="history.js"></script>
+    <script src="app.js?v=51"></script>
+    <script src="kong.js"></script>
+    <script src="yaku-hint.js"></script>
+    <script src="end-flow.js"></script>
+    <script src="account.js?v=52"></script>
+    <script src="highlight.js?v=52"></script>
+    <script src="hand-calculator.js?v=52"></script>
+  </body>
+</html>

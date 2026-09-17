@@ -1,0 +1,3 @@
+Hong Kong Mahjong Tiles by FluffyStuff and samoheen
+https://github.com/samoheen/mahjong-tiles
+CC0 1.0 / Public domain. Files renamed to game tile indexes.

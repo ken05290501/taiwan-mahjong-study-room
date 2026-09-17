@@ -1,0 +1,2 @@
+Source: https://github.com/kobalab/majiang-core/tree/master/lib
+Retrieved 2026-09-08. MIT license. Original source preserved; bundled with local module wrapper.

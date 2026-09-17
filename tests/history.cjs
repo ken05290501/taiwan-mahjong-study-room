@@ -1,0 +1,25 @@
+const fs=require('fs'),vm=require('vm'),assert=require('node:assert/strict');
+const files=['vendor/majiang.js','engine.js','taiwan.js','match.js','japanese.js','yaku.js','victory.js','enhance.js','quiz-bank.js','discard-challenges.js','experience.js','review.js','history.js','app.js'];
+const src=files.map(f=>fs.readFileSync('dist/'+f,'utf8')).join('\n');
+const data=new Map();let blocked=false;
+function context(){const c={Date,console,localStorage:{getItem:k=>data.get(k)||null,setItem:(k,v)=>{if(blocked)throw Error('quota');data.set(k,v)}},setTimeout(){},clearTimeout(){}};vm.createContext(c);vm.runInContext(src.slice(0,src.indexOf("$('#settings').onclick="))+'\nrender=()=>{};',c);return s=>vm.runInContext(s,c)}
+let run=context();
+run('start();start()');assert.equal(run('roundHistory.length'),0);
+run("g.h[0]=[0,0,0,3,3,3,9,9,9,18,18,18,22,22,22,27,27];g.drawn[0]=27;won(0,true)");
+assert.equal(run('roundHistory.length'),1);assert.equal(run('roundHistory[0].outcome'),'self');
+assert.equal(run('roundHistory[0].delta[0]'),run('g.victory.tw.total'));
+assert.equal(run('roundHistory[0].delta.reduce((a,b)=>a+b,0)'),0);
+assert.ok(run("roundHistory[0].items.some(x=>x.name==='五暗刻')"));
+run("finish('duplicate');recordRound()");assert.equal(run('roundHistory.length'),1);
+run=context();assert.equal(run('roundHistory.length'),1);assert.match(run('historyView()'),/五暗刻/);
+run("cfg.mode='jp';start();g.h=[[0,1,2,3,4,5,9,10,11,18,19,20,27],[0,0,0,1,1,1,2,2,2,3,3,3,4],[0,1,2,3,4,5,6,7,8,9,10,11,12],[0,2,4,6,8,10,12,14,16,18,20,22,24]];finish('流局')");
+assert.equal(run('roundHistory.length'),2);assert.equal(run('roundHistory[0].mode'),'jp');assert.equal(run('roundHistory[0].outcome'),'draw');
+assert.deepEqual(Array.from(run('roundHistory[0].delta')),Array.from(run('g.scores.map((x,i)=>x-g.startScores[i])')));
+assert.ok(run('roundHistory[0].delta.some(x=>x!==0)'));
+blocked=true;run("cfg.mode='tw';start();finish('流局')");assert.equal(run('roundHistory.length'),3);assert.ok(run('historyWarning.length')>0);
+blocked=false;run('persistHistory()');assert.equal(run('historyWarning'),'');
+run=context();assert.equal(run('roundHistory.length'),3);
+run("roundHistory=Array.from({length:510},(_,i)=>({...roundHistory[0],id:'limit-'+i,time:Date.now()+i}));persistHistory()");assert.equal(run('roundHistory.length'),500);
+run=context();assert.equal(run('roundHistory.length'),500);
+data.set('mj-round-history-v1','invalid JSON');run=context();assert.equal(run('roundHistory.length'),0);
+console.log('PASS: completed rounds only, scoring details/deltas, duplicate guard, reload persistence, JP draw settlement, failed-storage retry, 500-round retention and corrupted storage.');
