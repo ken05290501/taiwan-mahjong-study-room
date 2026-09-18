@@ -15,7 +15,9 @@ render=function(){
   renderBeforeAddedKong();
   document.documentElement.classList.toggle('motion-off',g?.rules?.motion===false);
   const actions=document.querySelector('.control-bar .actions');if(!actions)return;
-  for(const choice of addedKongChoices(0)){
-    const button=document.createElement('button');button.className='primary added-kong';button.textContent='加槓 '+names[choice.base];button.onclick=()=>addedKong(0,choice.base);actions.appendChild(button);
+  const choices=addedKongChoices(0),bar=actions.closest('.control-bar');
+  if(choices.length){bar?.classList.remove('quiet-actions');bar?.classList.add('has-actions')}
+  for(const choice of choices){
+    const button=document.createElement('button');button.className='primary action-pop added-kong';button.textContent='加槓 '+names[choice.base];button.onclick=()=>addedKong(0,choice.base);actions.appendChild(button);
   }
 };
