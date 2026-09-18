@@ -1,1 +1,7 @@
 .control-bar .round-end-next{min-width:170px;background:linear-gradient(135deg,#f5d47c,#dbad43);border-color:#f0ce72;color:#173e2e;font-weight:800;font-size:16px;box-shadow:0 7px 22px #d8a93d55;animation:round-end-enter .42s cubic-bezier(.2,.9,.3,1.2)}@keyframes round-end-enter{from{opacity:0;transform:translateY(12px) scale(.9)}to{opacity:1;transform:none}}.motion-off .control-bar .round-end-next{animation:none}@media(prefers-reduced-motion:reduce){.control-bar .round-end-next{animation:none}}@media(max-width:700px){.control-bar .round-end-next{width:100%;min-height:52px}}
+
+/* v53: keep the post-round action reachable in fullscreen and above mobile browser chrome. */
+.game-full .control-bar:has(.round-end-next){position:sticky!important;bottom:max(0px,env(safe-area-inset-bottom));z-index:35;padding-bottom:max(8px,env(safe-area-inset-bottom))!important}
+.game-full .control-bar .round-end-next{position:relative;z-index:36;max-width:min(100%,320px)}
+@media(max-width:700px){.game-full .control-bar:has(.round-end-next){margin-top:4px!important}.game-full .control-bar .round-end-next{width:100%!important;max-width:none;min-height:54px!important}}
+@media(max-width:1000px) and (orientation:landscape) and (max-height:600px){.game-full .control-bar:has(.round-end-next){position:relative!important;bottom:auto;padding-bottom:max(6px,env(safe-area-inset-bottom))!important}.game-full .control-bar .round-end-next{min-height:44px!important}}
