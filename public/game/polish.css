@@ -124,3 +124,27 @@
 }
 .voice-pack-setting select{min-width:180px;padding:10px 36px 10px 12px;border:1px solid #cbd8d1;border-radius:9px;background:#fff;color:#174b38;font:inherit}.voice-pack-preview{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 14px;border:1px solid #d7e2db;border-radius:11px;background:#f2f7f4}.voice-pack-preview p{margin:0;flex:1}.voice-pack-preview button{flex:none;padding:9px 13px}@media(max-width:600px){.voice-pack-setting{align-items:flex-start!important}.voice-pack-setting select{min-width:0;width:58%}.voice-pack-preview{align-items:stretch;flex-direction:column}.voice-pack-preview button{width:100%;min-height:44px}}
 .table-toolbar .game-tools{position:relative;display:block;flex:0 0 auto}.game-tools>#game-more{display:inline-flex!important;align-items:center;justify-content:center;min-width:76px}.game-menu-panel{display:none;position:absolute;top:calc(100% + 7px);right:0;z-index:80;width:220px;padding:7px;background:#fff;border:1px solid #c8d8ce;border-radius:8px;box-shadow:0 12px 30px #06251a30}.game-tools.tools-open{position:relative!important;top:auto!important;right:auto!important;left:auto!important;width:auto!important;max-width:none!important;padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important}.game-tools.tools-open .game-menu-panel{display:grid;grid-template-columns:1fr;gap:5px}.game-menu-panel>button{display:flex!important;width:100%;min-height:40px!important;padding:8px 11px!important;align-items:center;justify-content:flex-start;text-align:left;white-space:nowrap;background:#fff;box-shadow:none}.game-menu-panel>button:hover,.game-menu-panel>button:focus-visible{background:#edf4ef}.game-menu-panel>button[aria-pressed="true"]{background:#e4efe8;color:#164e39;border-color:#b9d1c2}@media(max-width:700px){.game-menu-panel{position:fixed;top:max(58px,env(safe-area-inset-top));right:10px;left:auto;width:min(280px,calc(100vw - 20px));max-height:calc(var(--play-vh,100dvh) - 72px);overflow:auto}.game-tools.tools-open .game-menu-panel{display:grid!important}}
+
+/* v53: keep actionable controls prominent without covering the player's hand. */
+.game-full .table .control-bar{position:relative;z-index:12;flex:0 0 auto}
+.game-full .table .control-bar.has-actions{border-color:#d8c47799;box-shadow:0 -5px 18px #001c1430}
+.game-full .table .control-bar.quiet-actions{min-height:42px}
+.game-full .table .control-bar.has-actions .actions{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:7px}
+.game-full .table .control-bar.has-actions .actions .action-pop{min-height:46px;padding:9px 16px;font-weight:800}
+.game-full .table .control-bar.has-actions .actions .primary{min-height:50px;padding:10px 20px;font-size:17px}
+.game-full .hand-zone{position:relative;z-index:10;min-width:0;overflow:visible!important}
+.game-full .hand-zone>.hand{min-width:0;max-width:100%;overflow:visible!important}
+.game-full .hand-zone>.hand .tile{min-width:0;touch-action:manipulation}
+@media(max-width:700px) and (orientation:portrait){
+ .game-full .table{padding-bottom:max(10px,env(safe-area-inset-bottom))!important}
+ .game-full .table .control-bar{position:sticky!important;bottom:max(0px,env(safe-area-inset-bottom));z-index:20}
+ .game-full .table .control-bar.has-actions{min-height:50px!important}
+ .game-full .table .control-bar.has-actions .actions{width:100%;justify-content:center!important;overflow-x:auto;overscroll-behavior-x:contain}
+ .game-full .table .control-bar.has-actions .actions .action-pop{flex:0 0 auto;min-height:44px!important;padding:7px 12px!important}
+ .game-full .table .control-bar.has-actions .actions .primary{min-height:48px!important;font-size:16px}
+ .game-full .hand-zone>.hand{grid-template-columns:repeat(9,minmax(0,1fr))!important;width:100%;max-width:100%}
+}
+@media(max-width:1000px) and (orientation:landscape) and (max-height:600px){
+ .game-full .table .control-bar{position:relative!important;z-index:20}
+ .game-full .hand-zone{padding-bottom:max(4px,env(safe-area-inset-bottom))!important}
+}
